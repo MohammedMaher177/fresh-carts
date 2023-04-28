@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { cartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
 export default function Products() {
@@ -37,9 +37,15 @@ export default function Products() {
   }, []);
   return (
     <>
+      {isLoading && (
+        <div className=" position-absolute end-0 start-0 z-n1 top-0 bottom-0 bg-light align-items-center d-flex justify-content-center">
+          <i className="fa-solid text-main fa-spinner fa-spin  fs-1"></i>
+        </div>
+      )}
+      <Toaster />
       <div className="row">
         {products?.map((product) => (
-          <div className="col-2 product" key={product._id}>
+          <div className="col-lg-2 col-md-3 product" key={product._id}>
             <Link to={`productDetails/${product._id}`}>
               <div className=" cursor-pointer py-2 px-3">
                 <img src={product.imageCover} alt="" className="w-100" />
@@ -60,7 +66,7 @@ export default function Products() {
               </div>
             </Link>
             <button
-              className="btn bg-main text-white w-100"
+              className="btn bg-main text-white w-75 mx-auto d-flex btn-sm mb-md-2"
               onClick={() => {
                 addProductToCart(product._id);
               }}
