@@ -12,6 +12,7 @@ import Brands from "./Components/Brands/Brands";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import { CartContextProvider } from "./Context/CartContext";
 import { BrandsContextProvider } from "./Context/BrandsContext";
+import Categories from "./Components/Categories/Categories";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +22,14 @@ function App() {
       children: [
         {
           index: true,
+          element: (
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "fresh-carts",
           element: (
             <ProtectedRoute>
               <Home />
@@ -52,6 +61,14 @@ function App() {
           ),
         },
         {
+          path: "categories",
+          element: (
+            <ProtectedRoute>
+              <Categories />
+            </ProtectedRoute>
+          ),
+        },
+        {
           path: "productDetails/:id",
           element: (
             <ProtectedRoute>
@@ -68,9 +85,6 @@ function App() {
     <>
       <AuthContextProvider>
         <CartContextProvider>
-          {/* <BrandsContextProvider>
-            <RouterProvider router={router}></RouterProvider>
-          </BrandsContextProvider> */}
           <RouterProvider router={router}></RouterProvider>
         </CartContextProvider>
       </AuthContextProvider>
