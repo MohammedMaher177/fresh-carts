@@ -45,7 +45,7 @@ export default function Products() {
       <Toaster />
       <div className="row">
         {products?.map((product) => (
-          <div className="col-lg-2 col-md-3 product" key={product._id}>
+          <div className="col-lg-3 col-md-4 col-sm-6 product" key={product._id}>
             <Link to={`productDetails/${product._id}`}>
               <div className=" cursor-pointer py-2 px-3">
                 <img src={product.imageCover} alt="" className="w-100" />
