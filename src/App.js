@@ -16,7 +16,7 @@ import { BrandsContextProvider } from "./Context/BrandsContext";
 function App() {
   const router = createBrowserRouter([
     {
-      path: "",
+      path: "/",
       element: <Layout />,
       children: [
         {
@@ -28,7 +28,7 @@ function App() {
           ),
         },
         {
-          path: "cart",
+          path: "/cart",
           element: (
             <ProtectedRoute>
               <Cart />
@@ -36,7 +36,7 @@ function App() {
           ),
         },
         {
-          path: "brands",
+          path: "/brands",
           element: (
             <ProtectedRoute>
               <Brands />
@@ -44,7 +44,7 @@ function App() {
           ),
         },
         {
-          path: "products",
+          path: "/products",
           element: (
             <ProtectedRoute>
               <Products />
@@ -52,15 +52,15 @@ function App() {
           ),
         },
         {
-          path: "productDetails/:id",
+          path: "/productDetails/:id",
           element: (
             <ProtectedRoute>
               <ProductDetails />
             </ProtectedRoute>
           ),
         },
-        { path: "login", element: <Login /> },
-        { path: "register", element: <Register /> },
+        { path: "/login", element: <Login /> },
+        { path: "/register", element: <Register /> },
       ],
     },
   ]);

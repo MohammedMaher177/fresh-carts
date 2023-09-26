@@ -20,7 +20,6 @@ export function CartContextProvider(props) {
             },
           }
         );
-      console.log(res);
       setnumbOfCartItem(res?.data?.numOfCartItems);
       return res;
     } catch (err) {
@@ -35,6 +34,7 @@ export function CartContextProvider(props) {
             token,
           },
         });
+        console.log(res);
       return res;
     } catch (err) {
       return err;
