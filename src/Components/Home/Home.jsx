@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { cartContext } from "../../Context/CartContext";
 import { Toaster, toast } from "react-hot-toast";
 import Products from "../Products/Products";
-import Test from '../Test/Test'
 export default function Home() {
   const [products, setproducts] = useState([]);
   const [isLoading, setisLoading] = useState(false);

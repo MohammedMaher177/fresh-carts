@@ -10,7 +10,7 @@ export default function Navbar() {
   const [useCartCount, setuseCartCount] = useState(0);
   async function getUerCart() {
     const response = await getCartData();
-    setuseCartCount(response.data.numOfCartItems);
+    setuseCartCount(response?.data?.numOfCartItems);
   }
   function ClickLogOut() {
     logout();

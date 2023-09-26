@@ -6,51 +6,46 @@ const token = localStorage.getItem("FreshCartToken");
 
 export function CartContextProvider(props) {
   const [numbOfCartItem, setnumbOfCartItem] = useState(0);
-  function addToCart(productId) {
-    return axios
-      .post(
-        `https://route-ecommerce.onrender.com/api/v1/cart`,
-        {
-          productId,
-        },
-        {
+  async function addToCart(productId) {
+    try {
+      const res = await axios
+        .post(
+          `https://route-ecommerce.onrender.com/api/v1/cart`,
+          {
+            productId,
+          },
+          {
+            headers: {
+              token,
+            },
+          }
+        );
+      console.log(res);
+      setnumbOfCartItem(res?.data?.numOfCartItems);
+      return res;
+    } catch (err) {
+      return err;
+    }
+  }
+  async function getCartData() {
+    try {
+      const res = await axios
+        .get(`https://route-ecommerce.onrender.com/api/v1/cart`, {
           headers: {
             token,
           },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        setnumbOfCartItem(res.data.numOfCartItems);
-
-        return res;
-      })
-      .catch((err) => {
-        console.log(err);
-        return err;
-      });
-  }
-  function getCartData() {
-    return axios
-      .get(`https://route-ecommerce.onrender.com/api/v1/cart`, {
-        headers: {
-          token,
-        },
-      })
-      .then((res) => {
-        // console.log(res);
-        return res;
-      })
-      .catch((err) => {
-        // console.log(err);
-        return err;
-      });
+        });
+      return res;
+    } catch (err) {
+      return err;
+    }
+    
   }
 
   async function getLoggedCart() {
     const response = await getCartData();
-    if (response?.data.status == "success") {
-      setnumbOfCartItem(response.data.numOfCartItems);
+    if (response?.data?.status == "success") {
+      setnumbOfCartItem(response?.data?.numOfCartItems);
     }
   }
   function removeItem(productId) {
@@ -62,7 +57,7 @@ export function CartContextProvider(props) {
       })
       .then((res) => {
         // console.log(res);
-        setnumbOfCartItem(res.data.numOfCartItems);
+        setnumbOfCartItem(res?.data?.numOfCartItems);
         return res;
       })
       .catch((err) => {
